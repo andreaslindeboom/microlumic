@@ -1,0 +1,36 @@
+---
+- name: Install Homebrew casks
+  homebrew_cask: name={{ item }} state=present
+  environment:
+    HOMEBREW_CASK_OPTS: --appdir=/Applications
+  with_items:
+  - adobe-digital-editions
+  - calibre
+  - docker
+  - docker-compose
+  - dockertoolbox
+  - evernote
+  - flowsync
+  - flux
+  - franz
+  - intellij-idea
+  - iterm2
+  - little-snitch
+  - macdown
+  - mactracker
+  - micro-snitch
+  - omnifocus
+  - packer
+  - quicksilver
+  - razer-synapse
+  - scroll-reverser
+  - sequel-pro
+  - skype
+  - slack
+  - spectacle
+  - spotify
+  - terraform
+  - tunnelblick
+  - unrarx
+  - vagrant
+  - virtualbox
