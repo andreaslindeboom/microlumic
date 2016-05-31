@@ -1,3 +1,5 @@
 ---
 - name: Install MAS (App Store CLI tool)
   unarchive: src=https://github.com/argon/mas/releases/download/v1.2.0/mas-cli.zip dest=/usr/local/bin copy=no
+  args:
+    creates: /usr/local/bin/mas
