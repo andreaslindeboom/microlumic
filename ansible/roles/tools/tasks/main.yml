@@ -1,4 +1,4 @@
 ---
-- include:
-  - brew.yml
-  - mas.yml
+- include: brew.yml
+- include: mas.yml
+
