@@ -6,3 +6,10 @@
 
 - name: Update Homebrew
   homebrew: update_homebrew=yes
+
+- name: Create Caskroom
+  file:
+    path: /opt/homebrew-cask/Caskroom2
+    state: directory
+    group: staff
+    mode: 0755
