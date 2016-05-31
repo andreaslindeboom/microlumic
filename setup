@@ -91,6 +91,11 @@ ensurePip() {
     fi
 }
 
+appstoreLogin() {
+    echo "- Logging into the App Store"
+    appstore/login
+}
+
 provision() {
     echo "- Provisioning system using Ansible, this may take a while"
     ansible-playbook -i "localhost," $1
@@ -103,4 +108,5 @@ ensurePlaybook $PLAYBOOK_PATH
 ensureSudo
 ensureCliTools
 ensureAnsible
+appstoreLogin
 provision $PLAYBOOK_PATH
