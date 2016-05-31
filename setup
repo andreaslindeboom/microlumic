@@ -1,0 +1,71 @@
+#!/bin/bash
+
+installing() {
+    echo "- Installing $1"
+}
+
+alreadyInstalled() {
+    echo "- $1 is already installed, skipping..."
+}
+
+installed() {
+    echo "- Checking if $1 is installed"
+    [ ! -z $(which $1) ]
+}
+
+cliToolsInstalled() {
+    echo "- Checking if XCode developer tools are installed"
+    xcode-select -p &> /dev/null
+    [[ $? == 0 ]]
+}
+
+canSudo() {
+    return $(sudo -n true 2>&1 | wc -l)
+}
+
+ensureSudo() {
+    echo "- Ensuring that sudo is active"
+    if ! canSudo; then
+        echo "- No active sudo, please enter password:"
+        sudo -v
+    else
+        echo "- Got sudo, doing nothing"
+    fi
+}
+
+ensureCliTools() {
+    if cliToolsInstalled; then
+        alreadyInstalled "XCode developer tools"
+        return
+    fi
+
+    # credits https://github.com/boxcutter/osx/blob/master/script/xcode-cli-tools.sh
+    PROGRESS_FLAG=/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    touch $PROGRESS_FLAG
+    URL=$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" '{print $2}' | sed -e 's/^ *//' | tr -d '\n')
+    softwareupdate -i "$URL" -v
+    rm $PROGRESS_FLAG
+}
+
+ensureAnsible() {
+    if ! installed ansible; then
+        installing "Ansible"
+        ensurePip
+        sudo pip install ansible
+    else
+        alreadyInstalled "Ansible"
+    fi
+}
+
+ensurePip() {
+    if ! installed pip; then
+        installing "Pip"
+        sudo easy_install --quiet pip
+    else
+        alreadyInstalled "Pip"
+    fi
+}
+
+ensureSudo
+ensureCliTools
+ensureAnsible
