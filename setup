@@ -54,6 +54,9 @@ ensureAnsible() {
         installing "Ansible"
         ensurePip
         sudo pip install ansible
+
+        #fix setuptools version conflict
+        pip install --upgrade setuptools --user python
     else
         alreadyInstalled "Ansible"
     fi
