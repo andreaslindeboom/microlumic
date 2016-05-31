@@ -92,8 +92,9 @@ ensurePip() {
 }
 
 provision() {
+    echo "- Provisioning system using Ansible, this may take a while"
     #export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-    ansible-playbook $1
+    ansible-playbook -i "localhost," $1
 }
 
 ANSIBLE_DIR="ansible"
