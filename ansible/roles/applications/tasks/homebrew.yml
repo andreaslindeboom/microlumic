@@ -1,0 +1,14 @@
+---
+- name: Install Homebrew CLI stuff
+  homebrew: name={{ item }} state=present
+  with_items:
+  - cloc
+  - dnsmasq
+  - go
+  - hub
+  - jq
+  - mas
+  - thefuck
+  - tree
+  - vim
+  - watch
