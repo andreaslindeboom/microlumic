@@ -5,3 +5,5 @@
     creates:
       ~/.spf13-vim-3/
 
+- name: Add single Vim setting
+  lineinfile: dest=~/.vimrc.local line="set pastetoggle=<F2>" state=present
