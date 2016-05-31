@@ -1,5 +1,4 @@
 #!/bin/bash
-
 installing() {
     echo "- Installing $1"
 }
@@ -17,6 +16,27 @@ cliToolsInstalled() {
     echo "- Checking if XCode developer tools are installed"
     xcode-select -p &> /dev/null
     [[ $? == 0 ]]
+}
+
+playbookPath() {
+    echo "$ANSIBLE_DIR/$1.yml"
+}
+
+usage() {
+    echo "Usage: $0 setup-name (this will be mapped to the $PLAYBOOK_PATH Ansible playbook)"
+}
+
+ensurePlaybook() {
+    if [[ -z $1 ]]; then
+        usage
+        exit
+    fi
+    if [[ ! -f $1 ]]; then
+        echo "Playbook $1 not found"
+        usage
+        exit
+    fi
+    echo "- Playbook found at $1"
 }
 
 canSudo() {
@@ -71,6 +91,16 @@ ensurePip() {
     fi
 }
 
+provision() {
+    #export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+    ansible-playbook $1
+}
+
+ANSIBLE_DIR="ansible"
+PLAYBOOK_PATH=$(playbookPath $1)
+
+ensurePlaybook $PLAYBOOK_PATH
 ensureSudo
 ensureCliTools
 ensureAnsible
+provision $PLAYBOOK_PATH
