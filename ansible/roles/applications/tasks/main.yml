@@ -2,3 +2,4 @@
 - include: homebrew.yml
 - include: homebrew-cask.yml
 - include: oh-my-zsh.yml
+- include: vim-spf13.yml

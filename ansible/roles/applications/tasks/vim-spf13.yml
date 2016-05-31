@@ -1,0 +1,7 @@
+---
+- name: Install SPF13-Vim
+  shell: curl http://j.mp/spf13-vim3 -L -o - | sh
+  args:
+    creates:
+      ~/.spf13-vim-3/
+
