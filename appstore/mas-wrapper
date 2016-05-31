@@ -1,0 +1,25 @@
+#!/bin/bash
+# 6 = invalid credentials
+# 7 = already logged in
+
+currently_logged_in() {
+    [ "$(mas account)" != "Not signed in" ]
+}
+
+if currently_logged_in; then
+    echo "Already logged in as $(mas account), run 'mas signout' and try again if you want to login as a different user"
+    exit;
+fi
+
+while true; do
+    read -p "Please enter your Mac App Store user name: " USER
+    read -s -p "Please enter your Mac App Store password (it will not be stored and it will be kept out of your history): " PASSWORD
+
+    {
+        mas signin $USER $PASSWORD &&
+        break;
+    } || {
+        EXIT_CODE=$?
+        echo -e "\nCould not log in (exit code $EXIT_CODE), try again"
+    }
+done
