@@ -6,12 +6,12 @@
       ~/.spf13-vim-3/
 
 - name: Add .vimrc.local settings
-  lineinfile: dest=~/.vimrc.local line="{{ item }}" state=present create=yes
+  lineinfile: dest=~/.vimrc.local line="{{ item }}" state=present
   with_items:
     - "set pastetoggle=<F2>"
 
 - name: Add .vimrc.before.local setting
-lineinfile: dest=~/.vimrc.before.local line="{{ item }}" state=present create=yes
+  lineinfile: dest=~/.vimrc.before.local line="{{ item }}" state=present create=yes
   with_items:
     - "let g:spf13_no_easyWindows = 1"
     - "let g:spf13_no_fastTabs = 1"
