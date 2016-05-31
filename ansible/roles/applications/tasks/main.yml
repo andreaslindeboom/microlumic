@@ -3,3 +3,4 @@
 - include: homebrew-cask.yml
 - include: oh-my-zsh.yml
 - include: vim-spf13.yml
+- include: appstore.yml

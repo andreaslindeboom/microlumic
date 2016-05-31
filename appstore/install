@@ -1,0 +1,10 @@
+#!/bin/bash
+alreadyInstalled() {
+    [[ ! -z $(mas list | grep $1 ) ]]
+}
+
+if alreadyInstalled $1; then
+    echo "Application already installed"
+else
+    mas install $1
+fi

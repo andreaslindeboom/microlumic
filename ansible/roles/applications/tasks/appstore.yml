@@ -1,0 +1,18 @@
+---
+- name: Install App Store applications
+  shell: appstore/install {{ item }}
+  with_items:
+  - 409183694 #keynote
+  - 409789998 #Twitter
+  - 407963104 #Pixelmator
+  - 443987910 #1Password
+  - 409203825 #Numbers
+  - 497799835 #Xcode
+  - 412448059 #ForkLift
+  - 409201541 #Pages
+  - 402835630 #OmniFocus
+  - 847496013 #Deckset
+  - 896450579 #Textual 5
+  - 803453959 #Slack
+  - 430255202 #Mactracker
+
