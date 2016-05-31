@@ -39,6 +39,8 @@ ensureCliTools() {
         return
     fi
 
+    installing "XCode developer tools"
+
     # credits https://github.com/boxcutter/osx/blob/master/script/xcode-cli-tools.sh
     PROGRESS_FLAG=/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
     touch $PROGRESS_FLAG
